@@ -11,7 +11,7 @@ const RewardItem = (props) => {
 			className='rewardItemWrapper' 
 			draggable="true" 
 			onDragStart={() => {
-				onDragStart(props.name, props.index, props.draggedFrom || 'Menu')
+				onDragStart(props.name, props.index, props.draggedFrom || -1)
 			}}
 		>
 			<span className='rewardItemTitle'>

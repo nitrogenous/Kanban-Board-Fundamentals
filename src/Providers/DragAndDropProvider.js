@@ -6,21 +6,21 @@ const {Provider, Consumer: DragAndDropConsumer } = DragAndDropContext;
 const initalDragAndDropState = {
 	draggingElement: '',
 	draggingElementIndex: 0, 
-	draggedFrom: null,
-	draggedTo: null,
+	indexOfDraggedFrom: null,
+	indexOfDraggedTo: null,
 	isDragging: false
 };
 
 const DragAndDropProvider = ({ children }) => {
 	const [ dragAndDropState, setDragAndDropState ] = useState(initalDragAndDropState);
 
-	const onDragStart = (draggingElement, draggingElementIndex, draggedFrom) => {
+	const onDragStart = (draggingElement, draggingElementIndex, indexOfDraggedFrom) => {
 		setDragAndDropState({
 			...dragAndDropState,
 			draggingElement: draggingElement,
 			draggingElementIndex: draggingElementIndex,
-			draggedFrom: draggedFrom,
-			draggedTo: null,
+			indexOfDraggedFrom: indexOfDraggedFrom,
+			indexOfDraggedTo: null,
 			isDragging: true
 		});
 	}
@@ -29,10 +29,10 @@ const DragAndDropProvider = ({ children }) => {
 		event.preventDefault();
 	};
 
-	const onDrop = (draggedTo) => {
+	const onDrop = (indexOfDraggedTo) => {
 		setDragAndDropState({
 			...dragAndDropState,
-			draggedTo: draggedTo,
+			indexOfDraggedTo: indexOfDraggedTo,
 			isDragging: false
 		});
 	}
@@ -40,7 +40,7 @@ const DragAndDropProvider = ({ children }) => {
 	const onDragLeave = () => {
 		setDragAndDropState({
 			...dragAndDropState,
-			draggedTo: null
+			indexOfDraggedTo: null
 		});
 	}
 

@@ -30,7 +30,7 @@ const Table = () => {
 					{
 						Object.keys(categories).map((categoryName, categoryIndex) => {
 							return (
-								<CategoryItem key={categoryIndex} name={categoryName}/>
+								<CategoryItem key={categoryIndex} name={categoryName} index={categoryIndex}/>
 							);
 						})
 					}

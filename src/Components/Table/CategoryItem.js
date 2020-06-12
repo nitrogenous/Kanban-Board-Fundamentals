@@ -13,7 +13,7 @@ const CategoryItem = ( props ) => {
 	return (
 		<div className='categoryItemWrapper'
 			onDragOver = {onDragOver}
-			onDrop = {() => onDrop(props.name)}
+			onDrop = {() => onDrop(props.index)}
 		>
 			<span className='categoryItemTitle'>
 				{ props.name }
