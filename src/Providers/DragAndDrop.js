@@ -19,6 +19,7 @@ const DragAndDropProvider = ({ children }) => {
 			...dragAndDropState,
 			draggingElement: draggingElement,
 			draggedFrom: draggedFrom,
+			draggedTo: null,
 			isDragging: true
 		});
 	}
