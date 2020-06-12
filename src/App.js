@@ -3,7 +3,7 @@ import Table from './Containers/Main/Table';
 
 function App() {
   return (
-	<div className="Get Miles Challenge">
+	<div>
 		<Table />
 	</div>
   );
