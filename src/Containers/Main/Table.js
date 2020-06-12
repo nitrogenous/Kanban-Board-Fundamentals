@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../../Styles/Containers/Main/Table.css';
 import RewardItem from '../../Components/Table/RewardItem';
 import CategoryItem from '../../Components/Table/CategoryItem';
@@ -19,7 +19,7 @@ const Table = () => {
 				<div className='rewardItemsWrapper'>
 					{
 						rewards.map((reward, rewardIndex) => {
-							return <RewardItem key={rewardIndex} name={reward} />
+							return <RewardItem key={rewardIndex} name={reward} index={rewardIndex}/>
 						})
 					}
 				</div>
