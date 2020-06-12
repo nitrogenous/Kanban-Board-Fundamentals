@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
 const RewardItem = (props) => {
-	const [details, setDetails] = useState(props);
+	const [ details, setDetails ] = useState(props);
 
 	// useEffect(() => {
 	// 	setDetails(props);
-	// }, [props]);
+	// }, [ props ]);
 
 	return (
 		<div>
-			<span>{props.name}</span>
+			<span>
+				{ props.name }
+			</span>
 		</div>
 	);
 };

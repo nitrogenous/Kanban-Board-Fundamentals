@@ -17,13 +17,15 @@ const Table = () => {
 					})
 				}
 			</div>
-			<div id='categories' style={{display: 'flex'}}>
+			<div id='categories'>
 				<span>Categories</span>
-				{
-					categories.map((value, index) => {
-						return <CategoryItem key={index} />
-					})
-				}
+				<div  style={{display: 'flex'}}>
+					{
+						categories.map((value, index) => {
+							return <CategoryItem key={index} name={value}/>
+						})
+					}
+				</div>
 			</div>
 		</div>
 	);
