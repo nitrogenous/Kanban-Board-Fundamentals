@@ -11,11 +11,13 @@ const Table = () => {
 		<div style={{display: 'flex'}}>
 			<div id='rewards'>
 				<span>Rewards</span>
-				{
-					rewards.map((value, index) => {
-						return <RewardItem key={index} name={value} />
-					})
-				}
+				<div>
+					{
+						rewards.map((value, index) => {
+							return <RewardItem key={index} name={value} />
+						})
+					}
+				</div>
 			</div>
 			<div id='categories'>
 				<span>Categories</span>
