@@ -9,7 +9,7 @@ const CategoryItem = (props) => {
 	}, [ props ]);
 
 	return (
-		<div className='categoryItemWrapper'>
+		<div className='categoryItemWrapper' onDrop={() => {console.log('onDrob' + props.name)}} onDragOver={(event) => {console.log('drag over'); event.preventDefault();}}>
 			<span className='categoryItemTitle'>
 				{ props.name }
 			</span>

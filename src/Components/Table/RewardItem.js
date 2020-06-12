@@ -9,7 +9,7 @@ const RewardItem = (props) => {
 	// }, [ props ]);
 
 	return (
-		<div className='rewardItemWrapper'  draggable="true">
+		<div className='rewardItemWrapper'  draggable="true" onDragStart={() => {console.log('ehe')}}>
 			<span className='rewardItemTitle'>
 				{ props.name }
 			</span>
