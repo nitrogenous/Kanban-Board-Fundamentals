@@ -1,8 +1,14 @@
 .rewardItemWrapper {
 	width: 50px;
-    padding: 10px;
-    margin: 10px 0px;
+    margin: 10px;
+    padding: 12.5px;
+    border-radius: 3px;
+	background: #FF6870;
+}
+
+.rewardItemTitle {
+	color: #FCFCFC;
 	font-weight: bold;
     text-align: center;
-    border: 1px solid black;
+	
 }

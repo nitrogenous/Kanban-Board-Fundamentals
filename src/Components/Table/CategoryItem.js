@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '../../Styles/Components/Table/CategoryItem.css';
 
 const CategoryItem = (props) => {
 	const [ details, setDetails ] = useState(props);
@@ -8,8 +9,8 @@ const CategoryItem = (props) => {
 	}, [ props ]);
 
 	return (
-		<div>
-			<span>
+		<div class='categoryItemWrapper'>
+			<span class='categoryItemTitle'>
 				{ props.name }
 			</span>
 		</div>

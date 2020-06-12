@@ -10,7 +10,7 @@ const RewardItem = (props) => {
 
 	return (
 		<div class='rewardItemWrapper'>
-			<span>
+			<span class='rewardItemTitle'>
 				{ props.name }
 			</span>
 		</div>

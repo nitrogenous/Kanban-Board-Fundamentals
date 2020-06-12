@@ -1,0 +1,19 @@
+.categoryItemWrapper {
+	width: 100px;
+	height: 100%;
+	margin: 0 7.5px;
+	padding: 10px 10px;
+	text-align: center;
+	border-radius: 3px;
+	background: rgba(24, 164, 224, 0.25);
+}
+
+.categoryItemTitle {
+	width: 75px;
+	color: #FCFCFC;
+	padding: 12.5px;
+	font-weight: bold;
+	border-radius: 3px;
+	background: #2C3D63;
+	display: inline-block;
+}
