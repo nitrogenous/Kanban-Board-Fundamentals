@@ -5,6 +5,7 @@ const {Provider, Consumer: DragAndDropConsumer } = DragAndDropContext;
 
 const initalDragAndDropState = {
 	draggingElement: '',
+	draggingElementIndex: 0, 
 	draggedFrom: null,
 	draggedTo: null,
 	isDragging: false
@@ -13,11 +14,11 @@ const initalDragAndDropState = {
 const DragAndDropProvider = ({ children }) => {
 	const [ dragAndDropState, setDragAndDropState ] = useState(initalDragAndDropState);
 
-	const onDragStart = (draggingElement, draggedFrom) => {
-		console.log(draggingElement, draggedFrom)
+	const onDragStart = (draggingElement, draggingElementIndex, draggedFrom) => {
 		setDragAndDropState({
 			...dragAndDropState,
 			draggingElement: draggingElement,
+			draggingElementIndex: draggingElementIndex,
 			draggedFrom: draggedFrom,
 			draggedTo: null,
 			isDragging: true
@@ -36,7 +37,14 @@ const DragAndDropProvider = ({ children }) => {
 		});
 	}
 
-	return <Provider value={{ dragAndDropState, onDragStart, onDragOver, onDrop }}> {children} </Provider>
+	const onDragLeave = () => {
+		setDragAndDropState({
+			...dragAndDropState,
+			draggedTo: null
+		});
+	}
+
+	return <Provider value={{ dragAndDropState, onDragStart, onDragOver, onDrop, onDragLeave }}> {children} </Provider>
 }
 
 
