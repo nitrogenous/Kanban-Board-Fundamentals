@@ -1,10 +1,10 @@
 import React from 'react';
-import Home from './Containers/Main/Home';
+import Table from './Containers/Main/Table';
 
 function App() {
   return (
 	<div className="Get Miles Challenge">
-		<Home />
+		<Table />
 	</div>
   );
 }

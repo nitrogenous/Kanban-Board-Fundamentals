@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Home = () => {
+const Table = () => {
 	const [test, setTest] = useState('Test');
 
 	return (
@@ -10,4 +10,4 @@ const Home = () => {
 	);
 };
 
-export default Home;
+export default Table;
