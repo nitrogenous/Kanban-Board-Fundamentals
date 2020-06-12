@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-const RewardItem = () => {
+const RewardItem = (props) => {
+	const [details, setDetails] = useState(props);
+
+	// useEffect(() => {
+	// 	setDetails(props);
+	// }, [props]);
+
 	return (
 		<div>
-			<span>Reward Item</span>
+			<span>{props.name}</span>
 		</div>
 	);
 };
