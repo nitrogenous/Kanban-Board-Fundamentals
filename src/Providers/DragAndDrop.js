@@ -24,9 +24,7 @@ const DragAndDropProvider = ({ children }) => {
 	}
 
 	const onDragOver = (event) => {
-		console.log(dragAndDropState);
 		event.preventDefault();
-		console.log(dragAndDropState);
 	};
 
 	const onDrop = (draggedTo) => {
@@ -35,7 +33,6 @@ const DragAndDropProvider = ({ children }) => {
 			draggedTo: draggedTo,
 			isDragging: false
 		});
-		console.log(dragAndDropState);
 	}
 
 	return <Provider value={{ dragAndDropState, onDragStart, onDragOver, onDrop }}> {children} </Provider>
