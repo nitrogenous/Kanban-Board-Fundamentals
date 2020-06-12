@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '../../Styles/Components/Table/RewardItem.css';
 
 const RewardItem = (props) => {
 	const [ details, setDetails ] = useState(props);
@@ -8,7 +9,7 @@ const RewardItem = (props) => {
 	// }, [ props ]);
 
 	return (
-		<div>
+		<div class='rewardItemWrapper'>
 			<span>
 				{ props.name }
 			</span>

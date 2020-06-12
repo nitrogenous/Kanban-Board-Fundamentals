@@ -1,0 +1,8 @@
+.rewardItemWrapper {
+	width: 50px;
+    padding: 10px;
+    margin: 10px 0px;
+	font-weight: bold;
+    text-align: center;
+    border: 1px solid black;
+}
