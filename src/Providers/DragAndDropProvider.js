@@ -40,7 +40,8 @@ const DragAndDropProvider = ({ children }) => {
 	const onDragLeave = () => {
 		setDragAndDropState({
 			...dragAndDropState,
-			indexOfDraggedTo: null
+			indexOfDraggedTo: null,
+			isDragging: false
 		});
 	}
 
