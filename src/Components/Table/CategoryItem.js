@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../../Styles/Components/Table/CategoryItem.css';
+import RewardItem from '../../Components/Table/RewardItem';
 
 const CategoryItem = (props) => {
 	const [ details, setDetails ] = useState(props);
@@ -13,6 +14,10 @@ const CategoryItem = (props) => {
 			<span className='categoryItemTitle'>
 				{ props.name }
 			</span>
+			<div>
+				<RewardItem name='R1'/>
+				<RewardItem name='R2'/>
+			</div>
 		</div>
 	);
 };
