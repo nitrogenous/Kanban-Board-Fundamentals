@@ -9,8 +9,8 @@ const RewardItem = (props) => {
 	// }, [ props ]);
 
 	return (
-		<div class='rewardItemWrapper'>
-			<span class='rewardItemTitle'>
+		<div className='rewardItemWrapper'  draggable="true">
+			<span className='rewardItemTitle'>
 				{ props.name }
 			</span>
 		</div>

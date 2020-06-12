@@ -9,8 +9,8 @@ const CategoryItem = (props) => {
 	}, [ props ]);
 
 	return (
-		<div class='categoryItemWrapper'>
-			<span class='categoryItemTitle'>
+		<div className='categoryItemWrapper'>
+			<span className='categoryItemTitle'>
 				{ props.name }
 			</span>
 		</div>

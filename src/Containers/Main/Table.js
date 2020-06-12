@@ -9,10 +9,10 @@ const Table = () => {
 	const [categories, setCategories] = useState(['C1', 'C2', 'C3', 'C4']);
 
 	return (
-		<div class='table'>
-			<div id='rewards' class='rewardsColumnWrapper'>
-				<span class='title' >Rewards</span>
-				<div class='rewardItemsWrapper'>
+		<div className='table'>
+			<div id='rewards' className='rewardsColumnWrapper'>
+				<span className='title' >Rewards</span>
+				<div className='rewardItemsWrapper'>
 					{
 						rewards.map((value, index) => {
 							return <RewardItem key={index} name={value} />
@@ -20,9 +20,9 @@ const Table = () => {
 					}
 				</div>
 			</div>
-			<div id='categories' class='categoryColumnsWrapper'>
-				<span class='title' >Categories</span>
-				<div  class='categoryItemsWrapper'>
+			<div id='categories' className='categoryColumnsWrapper'>
+				<span className='title' >Categories</span>
+				<div  className='categoryItemsWrapper'>
 					{
 						categories.map((value, index) => {
 							return <CategoryItem key={index} name={value}/>
