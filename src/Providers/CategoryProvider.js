@@ -22,7 +22,7 @@ const CategoryProvider = ({ children }) => {
 		let categoryName = getCategoryName(categoryIndex);
 		let rewardsOfCategory = categoryState[categoryName];
 
-		rewardsOfCategory.splice(rewardIndex, 0, rewardName).join();
+		rewardsOfCategory[rewardIndex] = rewardName;
 	};
 
 	const removeReward = (details) => {
