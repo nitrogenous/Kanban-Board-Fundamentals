@@ -1,19 +1,20 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
+import { CategoryContext } from '../../Providers/CategoryProvider';
 import RewardBox from '../../Components/Table/RewardBox';
 import CategoryColumn from '../../Components/Table/CategoryColumn';
-import { CategoryContext } from '../../Providers/CategoryProvider';
 
-export const rewards = [{id: 0, name: 'R1'}, {id: 1, name: 'R2'}, {id: 2, name: 'R3'}, {id: 3, name: 'R4'}];
+const rewards = [
+  { id: 0, name: 'R1' },
+  { id: 1, name: 'R2' },
+  { id: 2, name: 'R3' },
+  { id: 3, name: 'R4' },
+];
 
 const Table = () => {
-	const { categoryState, saveLocalState, undo, redo } = useContext(CategoryContext);
-
-	useEffect(() => {
-		console.log(categoryState)
-	})
+	const { stateOfCategories, saveLocalState, undo, redo } = useContext(CategoryContext);
 
 	return (
-		<div>
+		<div className='tableWrapper'>
 			<div className='controlBar'>
 				<span className='projectName'>Get Miles Coding Challenge</span>
 				<button className='menuButton save' onClick={saveLocalState} >Save</button>
@@ -35,9 +36,9 @@ const Table = () => {
 					<span className='title' >Categories</span>
 					<div  className='categoryColumns'>
 						{
-							Object.keys(categoryState).map((categoryName, categoryIndex) => {
+							Object.keys(stateOfCategories).map((categoryName, categoryIndex) => {
 								return (
-									<CategoryColumn key={categoryIndex} name={categoryName} index={categoryIndex} rewards={categoryState[categoryName]} />
+									<CategoryColumn key={categoryIndex} name={categoryName} index={categoryIndex} rewards={stateOfCategories[categoryName]} />
 								);
 							})
 						}
