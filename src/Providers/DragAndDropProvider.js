@@ -1,7 +1,7 @@
 import React, { useState, createContext } from 'react';
 
 const DragAndDropContext = createContext();
-const {Provider, Consumer: DragAndDropConsumer } = DragAndDropContext;
+const { Provider, Consumer: DragAndDropConsumer } = DragAndDropContext;
 
 const initalDragAndDropState = {
 	draggingElement: '',
@@ -23,7 +23,7 @@ const DragAndDropProvider = ({ children }) => {
 			indexOfDraggedTo: null,
 			isDragging: true
 		});
-	}
+	};
 
 	const onDragOver = (event) => {
 		event.preventDefault();
@@ -35,7 +35,7 @@ const DragAndDropProvider = ({ children }) => {
 			indexOfDraggedTo: indexOfDraggedTo,
 			isDragging: false
 		});
-	}
+	};
 
 	const onDragLeave = () => {
 		setDragAndDropState({
@@ -43,7 +43,7 @@ const DragAndDropProvider = ({ children }) => {
 			indexOfDraggedTo: null,
 			isDragging: false
 		});
-	}
+	};
 
 	return <Provider value={{ dragAndDropState, onDragStart, onDragOver, onDrop, onDragLeave }}> {children} </Provider>
 }
