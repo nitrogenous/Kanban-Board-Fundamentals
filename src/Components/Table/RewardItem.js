@@ -19,7 +19,7 @@ const RewardItem = (props) => {
 				{ props.name }
 			</span>
 			{ 
-				props.closeButton && <span class='rewardItemCloseButton' onClick={() => {removeReward(props.name, props.index, props.categoryIndex)}}> X </span>
+				props.closeButton && <span className='rewardItemCloseButton' onClick={() => {removeReward(props.name, props.index, props.categoryIndex)}}> X </span>
 			}
 		</div>
 	);
