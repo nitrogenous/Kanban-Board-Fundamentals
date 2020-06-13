@@ -4,9 +4,10 @@ import RewardItem from '../../Components/Table/RewardItem';
 import CategoryItem from '../../Components/Table/CategoryItem';
 import { CategoryContext } from '../../Providers/CategoryProvider';
 
+export const rewards = [{id: 0, name: 'R1'}, {id: 1, name: 'R2'}, {id: 2, name: 'R3'}, {id: 3, name: 'R4'}];
+
 const Table = () => {
-	const rewards = ['R1', 'R2', 'R3', 'R4'];
-	const { categoryState } = useContext(CategoryContext);
+	const { categoryState, saveLocalState, undo } = useContext(CategoryContext);
 
 	useEffect(() => {
 		console.log(categoryState)
@@ -14,12 +15,14 @@ const Table = () => {
 
 	return (
 		<div className='table'>
+			<button onClick={saveLocalState} >Save</button>
+			<button onClick={undo} >Undo</button>
 			<div id='rewards' className='rewardsColumnWrapper'>
 				<span className='title' >Rewards</span>
 				<div className='rewardItemsWrapper'>
 					{
 						rewards.map((reward, rewardIndex) => {
-							return <RewardItem key={rewardIndex} name={reward} index={rewardIndex}/>
+							return <RewardItem key={reward.id} reward={reward} />
 						})
 					}
 				</div>
@@ -30,7 +33,7 @@ const Table = () => {
 					{
 						Object.keys(categoryState).map((categoryName, categoryIndex) => {
 							return (
-								<CategoryItem key={categoryIndex} name={categoryName} index={categoryIndex} rewards={categoryState[categoryName]}/>
+								<CategoryItem key={categoryIndex} name={categoryName} index={categoryIndex} rewards={categoryState[categoryName]} />
 							);
 						})
 					}

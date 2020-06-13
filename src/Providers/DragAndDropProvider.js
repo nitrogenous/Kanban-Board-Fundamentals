@@ -6,8 +6,7 @@ const { Provider, Consumer: DragAndDropConsumer } = DragAndDropContext;
 
 
 const initalDragAndDropState = {
-	rewardName: '',
-	rewardIndex: 0, 
+	reward: {},
 	indexOfDraggedFrom: null,
 	indexOfDraggedTo: null,
 	isDragging: false
@@ -15,18 +14,17 @@ const initalDragAndDropState = {
 
 const DragAndDropProvider = ({ children }) => {
 	const [ dragAndDropState, setDragAndDropState ] = useState(initalDragAndDropState);
-	const { categoryState, addReward, removeReward } = useContext(CategoryContext);
+	const { categoryState, moveReward } = useContext(CategoryContext);
 
 	useEffect(() => {
 		console.log('DND TEST:  ', dragAndDropState);
 	})
 
-	const onDragStart = (rewardName, rewardIndex, indexOfDraggedFrom) => {
+	const onDragStart = (reward, indexOfDraggedFrom) => {
 		setDragAndDropState({
 			...dragAndDropState,
-			rewardName: rewardName,
-			rewardIndex: rewardIndex,
-			indexOfDraggedFrom: indexOfDraggedFrom,
+			reward,
+			indexOfDraggedFrom,
 			indexOfDraggedTo: null,
 			isDragging: true
 		});
@@ -43,7 +41,11 @@ const DragAndDropProvider = ({ children }) => {
 			isDragging: false
 		});
 		
-		createNewReward(indexOfDraggedTo);
+		moveReward(
+			dragAndDropState.reward,
+			indexOfDraggedTo,
+			dragAndDropState.indexOfDraggedFrom
+		);
 	};
 
 	const onDragLeave = (indexOfDraggedTo) => {
@@ -54,23 +56,6 @@ const DragAndDropProvider = ({ children }) => {
 		});
 	};
 
-	const createNewReward = (categoryIndex) => {
-		addReward(
-			dragAndDropState.rewardName,
-			dragAndDropState.rewardIndex,
-			categoryIndex
-		);
-	}
-
-	const updateTheCategoryOfReward = () => {
-		removeReward({
-			rewardName: dragAndDropState.rewardName,
-			rewardIndex: dragAndDropState.rewardIndex,
-			categoryIndex: dragAndDropState.indexOfDraggedFrom
-		});
-
-		createNewReward();
-	};
 
 	return <Provider value={{ dragAndDropState, onDragStart, onDragOver, onDrop, onDragLeave }}> {children} </Provider>
 }

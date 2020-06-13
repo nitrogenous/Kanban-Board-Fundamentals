@@ -3,7 +3,7 @@ import '../../Styles/Components/Table/RewardItem.css';
 import { DragAndDropContext } from '../../Providers/DragAndDropProvider';
 import { CategoryContext } from '../../Providers/CategoryProvider';
 
-const RewardItem = (props) => {
+const RewardItem = ({reward,categoryIndex= -1,closeButton}) => {
 	var { onDragStart } = useContext(DragAndDropContext);
 	var { removeReward } = useContext(CategoryContext);
 
@@ -12,14 +12,14 @@ const RewardItem = (props) => {
 			className='rewardItemWrapper' 
 			draggable="true" 
 			onDragStart={() => {
-				onDragStart(props.name, props.index, props.categoryIndex || -1)
+				onDragStart(reward, categoryIndex)
 			}}
 		>
 			<span className='rewardItemTitle'>
-				{ props.name }
+				{ reward.name }
 			</span>
 			{ 
-				props.closeButton && <span className='rewardItemCloseButton' onClick={() => {removeReward(props.name, props.index, props.categoryIndex)}}> X </span>
+				closeButton && <span className='rewardItemCloseButton' onClick={() => {removeReward(reward, categoryIndex)}}> X </span>
 			}
 		</div>
 	);
