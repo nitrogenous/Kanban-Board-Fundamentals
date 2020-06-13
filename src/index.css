@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 * {
+	user-select: none;
 	font-family: 'Montserrat', sans-serif;
 }
 
@@ -53,7 +54,7 @@ button {
 
 .menuButton:hover {
 	cursor: pointer;
-	background: #2C3D63;
+	background: #8D426A;
 	transition: 0.2s ease;
 }
 
@@ -121,10 +122,13 @@ button {
     border-radius: 3px;
 	position: relative;
 	background: #FF6870;
+	transition: 0.2s ease;
 }
 
 .rewardItemWrapper:hover {
 	cursor: move;
+	background: #8D426A;
+	transition: 0.2s ease;
 }
 
 .rewardItemTitle {
