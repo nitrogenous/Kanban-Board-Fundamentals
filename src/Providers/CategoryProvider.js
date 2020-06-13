@@ -34,7 +34,8 @@ const CategoryProvider = ({ children }) => {
 		let categoryName = getCategoryName(categoryIndex);
 		let rewardsOfCategory = categoryState[categoryName];
 
-		rewardsOfCategory.splice(rewardIndex,1);
+		delete rewardsOfCategory[rewardIndex];
+
 
 		setcategoryState({
 			...categoryState,
