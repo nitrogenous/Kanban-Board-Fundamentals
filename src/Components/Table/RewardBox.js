@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { DragAndDropContext } from '../../Providers/DragAndDropProvider';
 import { CategoryContext } from '../../Providers/CategoryProvider';
 
-const RewardBox = ({reward,categoryIndex= -1,closeButton}) => {
+const RewardBox = ({reward,categoryIndex= -1,closeButtonVisible}) => {
 	var { onDragStart } = useContext(DragAndDropContext);
 	var { removeReward } = useContext(CategoryContext);
 
@@ -18,7 +18,7 @@ const RewardBox = ({reward,categoryIndex= -1,closeButton}) => {
 				{ reward.name }
 			</span>
 			{ 
-				closeButton && <button className='rewardBoxCloseButton' onClick={() => {removeReward(reward, categoryIndex)}}> X </button>
+				closeButtonVisible && <button className='rewardBoxCloseButton' onClick={() => {removeReward(reward, categoryIndex)}}> X </button>
 			}
 		</div>
 	);
