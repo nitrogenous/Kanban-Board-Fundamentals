@@ -18,7 +18,7 @@ const CategoryItem = ( props ) => {
 				{
 					(props.rewards).map((rewardName, rewardIndex) => {
 						return (
-							<RewardItem key={rewardIndex} name={rewardName} index={rewardIndex} closeButton={true}/>
+							<RewardItem key={rewardIndex} name={rewardName} index={rewardIndex} categoryIndex={props.index} closeButton={true}/>
 						)
 					})
 				}

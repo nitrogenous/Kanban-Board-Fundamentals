@@ -8,6 +8,10 @@ const Table = () => {
 	const rewards = ['R1', 'R2', 'R3', 'R4'];
 	const { categoryState } = useContext(CategoryContext);
 
+	useEffect(() => {
+		console.log(categoryState)
+	})
+
 	return (
 		<div className='table'>
 			<div id='rewards' className='rewardsColumnWrapper'>

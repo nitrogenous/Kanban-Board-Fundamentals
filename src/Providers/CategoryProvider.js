@@ -23,10 +23,23 @@ const CategoryProvider = ({ children }) => {
 		let rewardsOfCategory = categoryState[categoryName];
 
 		rewardsOfCategory[rewardIndex] = rewardName;
+
+		setcategoryState({
+			...categoryState,
+			[categoryName]: rewardsOfCategory
+		});
 	};
 
-	const removeReward = (details) => {
-		console.log(details)
+	const removeReward = (rewardName, rewardIndex, categoryIndex) => {
+		let categoryName = getCategoryName(categoryIndex);
+		let rewardsOfCategory = categoryState[categoryName];
+
+		rewardsOfCategory.splice(rewardIndex,1);
+
+		setcategoryState({
+			...categoryState,
+			[categoryName]: rewardsOfCategory
+		});
 	};
 
 	const getCategoryName = (categoryIndex) => {

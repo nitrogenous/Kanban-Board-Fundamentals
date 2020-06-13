@@ -19,7 +19,7 @@ const DragAndDropProvider = ({ children }) => {
 
 	useEffect(() => {
 		console.log('DND TEST:  ', dragAndDropState);
-	}, [dragAndDropState])
+	})
 
 	const onDragStart = (rewardName, rewardIndex, indexOfDraggedFrom) => {
 		setDragAndDropState({
