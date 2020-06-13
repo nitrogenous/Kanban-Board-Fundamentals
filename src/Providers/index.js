@@ -1,9 +1,9 @@
 import React from "react";
-import { CategoryEditProvider } from "./CategoryEditProvider";
+import { CategoryProvider } from "./CategoryProvider";
 import { DragAndDropProvider } from "./DragAndDropProvider";
 
 export const Providers = ({ children }) => (
-	<CategoryEditProvider>
+	<CategoryProvider>
 		<DragAndDropProvider> {children} </DragAndDropProvider>
-	</CategoryEditProvider>
+	</CategoryProvider>
 );

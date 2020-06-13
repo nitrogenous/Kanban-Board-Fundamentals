@@ -2,23 +2,11 @@ import React, { useState, useContext, useEffect } from 'react';
 import '../../Styles/Containers/Main/Table.css';
 import RewardItem from '../../Components/Table/RewardItem';
 import CategoryItem from '../../Components/Table/CategoryItem';
-import { CategoryEditContext } from '../../Providers/CategoryEditProvider';
+import { CategoryContext } from '../../Providers/CategoryProvider';
 
 const Table = () => {
 	const rewards = ['R1', 'R2', 'R3', 'R4'];
-	const [categories, setCategories] = useState({
-		'C1': ['R1'], 
-		'C2': [], 
-		'C3': [], 
-		'C4': []
-	});
-
-	const { categoryEditState, initCategories } = useContext(CategoryEditContext);
-
-	useEffect(() => {
-		initCategories(categories);
-
-	}, []);
+	const { categoryState } = useContext(CategoryContext);
 
 	return (
 		<div className='table'>
@@ -36,9 +24,9 @@ const Table = () => {
 				<span className='title' >Categories</span>
 				<div  className='categoryItemsWrapper'>
 					{
-						Object.keys(categories).map((categoryName, categoryIndex) => {
+						Object.keys(categoryState).map((categoryName, categoryIndex) => {
 							return (
-								<CategoryItem key={categoryIndex} name={categoryName} index={categoryIndex}/>
+								<CategoryItem key={categoryIndex} name={categoryName} index={categoryIndex} rewards={categoryState[categoryName]}/>
 							);
 						})
 					}

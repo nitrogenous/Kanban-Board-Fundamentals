@@ -6,10 +6,6 @@ import { DragAndDropContext } from '../../Providers/DragAndDropProvider';
 const CategoryItem = ( props ) => {
 	var { dragAndDropState, onDragOver, onDrop  } = useContext(DragAndDropContext);
 
-	useEffect(() => {
-		console.log(dragAndDropState);
-	})
-
 	return (
 		<div className='categoryItemWrapper'
 			onDragOver = {onDragOver}
@@ -18,6 +14,15 @@ const CategoryItem = ( props ) => {
 			<span className='categoryItemTitle'>
 				{ props.name }
 			</span>
+			<div>
+				{
+					(props.rewards).map((rewardName, rewardIndex) => {
+						return (
+							<RewardItem key={rewardIndex} name={rewardName} index={rewardIndex}/>
+						)
+					})
+				}
+			</div>
 		</div>
 	);
 };
