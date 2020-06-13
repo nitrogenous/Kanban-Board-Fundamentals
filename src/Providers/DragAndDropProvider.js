@@ -14,7 +14,7 @@ const initalDragAndDropState = {
 
 const DragAndDropProvider = ({ children }) => {
 	const [ dragAndDropState, setDragAndDropState ] = useState(initalDragAndDropState);
-	const { categoryState, moveReward } = useContext(CategoryContext);
+	const { moveReward } = useContext(CategoryContext);
 
 	useEffect(() => {
 		console.log('DND TEST:  ', dragAndDropState);

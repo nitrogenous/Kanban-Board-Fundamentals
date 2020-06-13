@@ -41,15 +41,45 @@ const CategoryProvider = ({ children }) => {
 				else {
 					moveReward(reward, idToRemove, idToInsert, false);				
 				}
-			break;
+
+				break;
 			case 'removeReward':
 				let [ rewardToAdd, idToAdd ] = action.params;
 
 				moveReward(rewardToAdd, idToAdd, -1, false);
-			break;
+				break;
+			default:
+				break;
 		}
 
 		setActionsHistory({index: actionsHistory.index - 1, actions: actionsHistory.actions});
+	};
+
+	const redo = () => {
+		if(actionsHistory.index > actionsHistory.actions.length - 1) return;	
+
+		let action = actionsHistory.actions[actionsHistory.index];
+
+		switch(action.name) {
+			case 'moveReward':
+				let [reward, idToInsert, idToRemove] = action.params;
+
+				if(idToRemove === -1) {
+					moveReward(reward, idToInsert, -1, false );
+				}
+				else {
+					moveReward(reward, idToInsert, idToRemove, false);
+				}
+				break;
+			case 'removeReward':
+				let [ rewardToRemove, idToRemove1 ] = action.params;
+
+				removeReward(rewardToRemove, idToRemove1, false);
+			default:
+				break;
+		}
+
+		setActionsHistory({index: actionsHistory.index + 1, actions: actionsHistory.actions});
 	};
 
 	const getCategoryName = useCallback((categoryIndex) => {
@@ -112,7 +142,7 @@ const CategoryProvider = ({ children }) => {
 
 	}, [ categoryState ])
 
-	return <Provider value={{ categoryState, moveReward, removeReward, saveLocalState, undo }} > {children} </Provider>
+	return <Provider value={{ categoryState, moveReward, removeReward, saveLocalState, undo, redo }} > {children} </Provider>
 
 };
 
