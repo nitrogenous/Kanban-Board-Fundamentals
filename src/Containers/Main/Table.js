@@ -45,6 +45,7 @@ const Table = () => {
 					</div>
 				</div>
 			</div>
+			<span className='authorInfo' > Made by Toprak Koc <br /> Contact: hello@toprak.dev </span>
 		</div>
 	);
 };
