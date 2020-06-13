@@ -1,16 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import '../../Styles/Containers/Main/Table.css';
 import RewardItem from '../../Components/Table/RewardItem';
 import CategoryItem from '../../Components/Table/CategoryItem';
+import { CategoryEditContext } from '../../Providers/CategoryEditProvider';
 
 const Table = () => {
 	const rewards = ['R1', 'R2', 'R3', 'R4'];
 	const [categories, setCategories] = useState({
-		'C1': [], 
+		'C1': ['R1'], 
 		'C2': [], 
 		'C3': [], 
 		'C4': []
 	});
+
+	const { categoryEditState, initCategories } = useContext(CategoryEditContext);
+
+	useEffect(() => {
+		initCategories(categories);
+
+	}, []);
 
 	return (
 		<div className='table'>
