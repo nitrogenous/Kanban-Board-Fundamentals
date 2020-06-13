@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import RewardBox from './RewardBox';
 import { DragAndDropContext } from '../../Providers/DragAndDropProvider';
+import RewardBox from './RewardBox';
 
 const CategoryColumn = ( props ) => {
 	var { onDragOver, onDrop  } = useContext(DragAndDropContext);
@@ -11,13 +11,13 @@ const CategoryColumn = ( props ) => {
 			onDrop = {() => onDrop(props.index)}
 		>
 			<span className='categoryColumnTitle'>
-				{ props.name }
+				{props.name}
 			</span>
 			<div>
 				{
 					(props.rewards).map((reward) => {
 						return (
-							<RewardBox key={reward.id} reward={reward} categoryIndex={props.index} closeButton={true}/>
+							<RewardBox key={reward.id} reward={reward} categoryIndex={props.index} closeButtonVisible={true}/>
 						)
 					})
 				}
