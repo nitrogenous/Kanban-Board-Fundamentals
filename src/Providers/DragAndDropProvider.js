@@ -55,11 +55,11 @@ const DragAndDropProvider = ({ children }) => {
 	};
 
 	const createNewReward = (categoryIndex) => {
-		addReward({
-			rewardName: dragAndDropState.rewardName,
-			rewardIndex: dragAndDropState.rewardIndex,
-			categoryIndex: categoryIndex
-		});
+		addReward(
+			dragAndDropState.rewardName,
+			dragAndDropState.rewardIndex,
+			categoryIndex
+		);
 	}
 
 	const updateTheCategoryOfReward = () => {

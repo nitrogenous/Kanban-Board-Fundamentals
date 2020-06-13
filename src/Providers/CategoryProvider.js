@@ -15,14 +15,22 @@ const CategoryProvider = ({ children }) => {
 	const [categoryState, setcategoryState] = useState(initalCategoryState);
 
 	useEffect(() => {
-		console.log(categoryState)
+		console.log('CATEGORY TEST: ',categoryState)
 	})
 
-	const addReward = (details) => {
+	const addReward = (rewardName, rewardIndex, categoryIndex) => {
+		let categoryName = getCategoryName(categoryIndex);
+		let rewardsOfCategory = categoryState[categoryName];
+
+		rewardsOfCategory.splice(rewardIndex, 0, rewardName).join();
 	};
 
 	const removeReward = (details) => {
 		console.log(details)
+	};
+
+	const getCategoryName = (categoryIndex) => {
+		return Object.keys(categoryState)[categoryIndex];
 	};
 
 
