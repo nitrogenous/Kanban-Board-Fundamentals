@@ -79,7 +79,7 @@ button {
 	border-right: 2px solid #C3C4C8;
 }
 
-.rewardItemsWrapper {
+.rewardBoxsWrapper {
 	margin-top: 100px;
 }
 
@@ -89,13 +89,13 @@ button {
     flex-direction: column;
 }
 
-.categoryItemsWrapper {
+.categoryColumns {
 	height: 100%;
 	display: flex;
 	margin: 10px 0 0 0;
 }
 
-.categoryItemWrapper {
+.categoryColumnWrapper {
 	width: 100px;
 	height: 100%;
 	margin: 0 7.5px;
@@ -105,7 +105,7 @@ button {
 	background: rgba(24, 164, 224, 0.25);
 }
 
-.categoryItemTitle {
+.categoryColumnTitle {
 	width: 75px;
 	color: #FCFCFC;
 	padding: 12.5px;
@@ -115,7 +115,7 @@ button {
 	display: inline-block;
 }
 
-.rewardItemWrapper {
+.rewardBoxWrapper {
 	width: 50px;
     margin: 10px;
     padding: 12.5px;
@@ -125,19 +125,19 @@ button {
 	transition: 0.2s ease;
 }
 
-.rewardItemWrapper:hover {
+.rewardBoxWrapper:hover {
 	cursor: move;
 	background: #8D426A;
 	transition: 0.2s ease;
 }
 
-.rewardItemTitle {
+.rewardBoxTitle {
 	color: #FCFCFC;
 	font-weight: bold;
     text-align: center;	
 }
 
-.rewardItemCloseButton {
+.rewardBoxCloseButton {
 	top: -0.5px;
 	right: 3.5px;
 	padding: 0;
@@ -148,6 +148,6 @@ button {
 	position: absolute;
 }
 
-.rewardItemCloseButton:hover {
+.rewardBoxCloseButton:hover {
 	cursor: pointer;
 }

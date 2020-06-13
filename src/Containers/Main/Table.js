@@ -1,6 +1,6 @@
-import React, { useState, useContext, useEffect } from 'react';
-import RewardItem from '../../Components/Table/RewardItem';
-import CategoryItem from '../../Components/Table/CategoryItem';
+import React, { useContext, useEffect } from 'react';
+import RewardBox from '../../Components/Table/RewardBox';
+import CategoryColumn from '../../Components/Table/CategoryColumn';
 import { CategoryContext } from '../../Providers/CategoryProvider';
 
 export const rewards = [{id: 0, name: 'R1'}, {id: 1, name: 'R2'}, {id: 2, name: 'R3'}, {id: 3, name: 'R4'}];
@@ -23,21 +23,21 @@ const Table = () => {
 			<div className='table'>
 				<div id='rewards' className='rewardsColumnWrapper'>
 					<span className='title' >Rewards</span>
-					<div className='rewardItemsWrapper'>
+					<div className='rewardBoxsWrapper'>
 						{
 							rewards.map((reward, rewardIndex) => {
-								return <RewardItem key={reward.id} reward={reward} />
+								return <RewardBox key={reward.id} reward={reward} />
 							})
 						}
 					</div>
 				</div>
 				<div id='categories' className='categoryColumnsWrapper'>
 					<span className='title' >Categories</span>
-					<div  className='categoryItemsWrapper'>
+					<div  className='categoryColumns'>
 						{
 							Object.keys(categoryState).map((categoryName, categoryIndex) => {
 								return (
-									<CategoryItem key={categoryIndex} name={categoryName} index={categoryIndex} rewards={categoryState[categoryName]} />
+									<CategoryColumn key={categoryIndex} name={categoryName} index={categoryIndex} rewards={categoryState[categoryName]} />
 								);
 							})
 						}
