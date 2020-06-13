@@ -3,12 +3,31 @@
     margin: 10px;
     padding: 12.5px;
     border-radius: 3px;
+	position: relative;
 	background: #FF6870;
+}
+
+.rewardItemWrapper:hover {
+	cursor: move;
 }
 
 .rewardItemTitle {
 	color: #FCFCFC;
 	font-weight: bold;
-    text-align: center;
-	
+    text-align: center;	
+}
+
+.rewardItemCloseButton {
+	top: -0.5px;
+	right: 3.5px;
+	padding: 0;
+	color: white;
+	border: none;
+	font-size: 13px;
+	background: none;
+	position: absolute;
+}
+
+.rewardItemCloseButton:hover {
+	cursor: pointer;
 }

@@ -17,6 +17,7 @@ const RewardItem = (props) => {
 			<span className='rewardItemTitle'>
 				{ props.name }
 			</span>
+			{ props.closeButton && <span class='rewardItemCloseButton' onClick={() => {console.log(1)}}> X </span>}
 		</div>
 	);
 };
