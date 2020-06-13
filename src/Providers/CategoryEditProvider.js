@@ -1,10 +1,10 @@
-import React, { useState, createContex } from 'react';
+import React, { useState, createContext } from 'react';
 
-const CategoryEditContext = createContex();
+const CategoryEditContext = createContext();
 const { Provider, Consumer: CategoryEditConsumer } = CategoryEditContext;
 
 const initalCategoryEditState = {
-	categories: {},
+	categories: {}
 
 };
 
