@@ -36,7 +36,6 @@ const CategoryProvider = ({ children }) => {
 
 		delete rewardsOfCategory[rewardIndex];
 
-
 		setcategoryState({
 			...categoryState,
 			[categoryName]: rewardsOfCategory
