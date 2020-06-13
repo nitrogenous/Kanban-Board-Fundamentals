@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import '../../Styles/Components/Table/RewardItem.css';
 import { DragAndDropContext } from '../../Providers/DragAndDropProvider';
 import { CategoryContext } from '../../Providers/CategoryProvider';
 
@@ -19,7 +18,7 @@ const RewardItem = ({reward,categoryIndex= -1,closeButton}) => {
 				{ reward.name }
 			</span>
 			{ 
-				closeButton && <span className='rewardItemCloseButton' onClick={() => {removeReward(reward, categoryIndex)}}> X </span>
+				closeButton && <button className='rewardItemCloseButton' onClick={() => {removeReward(reward, categoryIndex)}}> X </button>
 			}
 		</div>
 	);

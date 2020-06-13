@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+* {
+	font-family: 'Montserrat', sans-serif;
+}
+
 body {
 	background: #333333;
 	margin: 10px;
@@ -11,4 +17,133 @@ body {
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
 	monospace;
+}
+
+button {
+	outline:none;
+}
+
+.controlBar {
+	margin: 10px;
+	display: flex;
+	align-items: center;
+}
+
+.projectName {
+	color: #BBD38B;
+	font-size: 24px;
+	margin-right: 10px;
+	padding-right: 10px;
+	display: inline-flex;
+	border-right: 1.25px solid #BBD38B;
+}
+
+.menuButton {
+	border: none;
+	height: 27.5px;
+	margin: 2.5px;
+	color: #FCFCFC;
+	font-size: 16px;
+	font-weight: bold;
+	border-radius: 3px;
+	background: #FF6870;
+	letter-spacing: 0.5px;
+	transition: 0.2s ease;
+}
+
+.menuButton:hover {
+	cursor: pointer;
+	background: #2C3D63;
+	transition: 0.2s ease;
+}
+
+.table {
+	padding: 5px;
+	display: flex;
+	border-radius: 5px;
+	background: #FCFCFC;
+}
+
+.table .title {
+	color: #E8824F;
+	font-size: 20px;
+	padding: 0 0 5px 0;
+	border-bottom: 2px solid #C3C4C8;
+}
+
+.rewardsColumnWrapper {
+	margin: 0 15px 0 0;
+	text-align: center;
+	padding: 0 15px 50px 0;
+	border-right: 2px solid #C3C4C8;
+}
+
+.rewardItemsWrapper {
+	margin-top: 100px;
+}
+
+.categoryColumnsWrapper {
+    display: flex;
+    padding: 0 15px 50px 0;
+    flex-direction: column;
+}
+
+.categoryItemsWrapper {
+	height: 100%;
+	display: flex;
+	margin: 10px 0 0 0;
+}
+
+.categoryItemWrapper {
+	width: 100px;
+	height: 100%;
+	margin: 0 7.5px;
+	padding: 10px 10px;
+	text-align: center;
+	border-radius: 3px;
+	background: rgba(24, 164, 224, 0.25);
+}
+
+.categoryItemTitle {
+	width: 75px;
+	color: #FCFCFC;
+	padding: 12.5px;
+	font-weight: bold;
+	border-radius: 3px;
+	background: #2C3D63;
+	display: inline-block;
+}
+
+.rewardItemWrapper {
+	width: 50px;
+    margin: 10px;
+    padding: 12.5px;
+    border-radius: 3px;
+	position: relative;
+	background: #FF6870;
+}
+
+.rewardItemWrapper:hover {
+	cursor: move;
+}
+
+.rewardItemTitle {
+	color: #FCFCFC;
+	font-weight: bold;
+    text-align: center;	
+}
+
+.rewardItemCloseButton {
+	top: -0.5px;
+	right: 3.5px;
+	padding: 0;
+	color: white;
+	border: none;
+	font-size: 13px;
+	background: none;
+	position: absolute;
+}
+
+.rewardItemCloseButton:hover {
+	cursor: pointer;
 }

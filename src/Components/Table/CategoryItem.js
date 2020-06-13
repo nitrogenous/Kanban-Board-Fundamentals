@@ -1,5 +1,4 @@
 import React, { useEffect, useContext } from 'react';
-import '../../Styles/Components/Table/CategoryItem.css';
 import RewardItem from '../../Components/Table/RewardItem';
 import { DragAndDropContext } from '../../Providers/DragAndDropProvider';
 
