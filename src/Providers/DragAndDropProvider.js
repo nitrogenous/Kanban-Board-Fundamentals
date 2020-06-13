@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect, useContext } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import { CategoryContext } from './CategoryProvider';
 
 const DragAndDropContext = createContext();
@@ -15,10 +15,6 @@ const initalDragAndDropState = {
 const DragAndDropProvider = ({ children }) => {
 	const [ dragAndDropState, setDragAndDropState ] = useState(initalDragAndDropState);
 	const { moveReward } = useContext(CategoryContext);
-
-	useEffect(() => {
-		console.log('DND TEST:  ', dragAndDropState);
-	})
 
 	const onDragStart = (reward, indexOfDraggedFrom) => {
 		setDragAndDropState({
