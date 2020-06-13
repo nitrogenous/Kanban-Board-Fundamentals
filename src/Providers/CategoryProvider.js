@@ -1,148 +1,120 @@
 import React, { useState, useEffect, useCallback, createContext } from 'react';
-import { rewards } from '../Containers/Main/Table';
 
 const CategoryContext = createContext();
-const { Provider, Consumer: CategoryConsumer } = CategoryContext;
+const {Provider, Consumer: CategoryConsumer} = CategoryContext;
 
-const initalCategoryState = {
-	'C1': [rewards[0], rewards[1]], 
+const stateOfInitialCategories = {
+	'C1': [], 
 	'C2': [], 
 	'C3': [], 
-	'C4': [rewards[3]],
+	'C4': [],
 	'C5': []
 };
-const localStateStorageKey = 'categoryState';
+const localStorageKeyOfCategories = 'localStateOfCategories';
 
 const CategoryProvider = ({ children }) => {
-	const [ categoryState, setcategoryState ] = useState({});
-	const [ actionsHistory, setActionsHistory ] = useState({index:0, actions: []});
+	const [ stateOfCategories, setStateOfCategories ] = useState({});
+	const [ historyOfActions, setHistoryOfActions ] = useState({index:0, actions: []});
 	
 	useEffect(() => {
-		const localStateValue = JSON.parse(localStorage.getItem(localStateStorageKey)) || initalCategoryState;
+		const localCategories = JSON.parse(localStorage.getItem(localStorageKeyOfCategories)) || stateOfInitialCategories;
 
-		setcategoryState(localStateValue);
+		setStateOfCategories(localCategories);
 	}, [])
 
-	useEffect(() => {
-		console.log(actionsHistory);
-	});
-	const undo = () => {
-		if(actionsHistory.index < 1) return;	
-		
-		let action = actionsHistory.actions[actionsHistory.index - 1];
-
-		switch(action.name) {
-			case 'moveReward': 
-				let [ reward, idToInsert, idToRemove ] = action.params;
-
-				if ( idToRemove === -1 ) {
-					removeReward(reward, idToInsert, false);
-				} 
-				else {
-					moveReward(reward, idToRemove, idToInsert, false);				
-				}
-
-				break;
-			case 'removeReward':
-				let [ rewardToAdd, idToAdd ] = action.params;
-
-				moveReward(rewardToAdd, idToAdd, -1, false);
-				break;
-			default:
-				break;
-		}
-
-		setActionsHistory({index: actionsHistory.index - 1, actions: actionsHistory.actions});
-	};
-
-	const redo = () => {
-		if(actionsHistory.index > actionsHistory.actions.length - 1) return;	
-
-		let action = actionsHistory.actions[actionsHistory.index];
-
-		switch(action.name) {
-			case 'moveReward':
-				let [reward, idToInsert, idToRemove] = action.params;
-
-				if(idToRemove === -1) {
-					moveReward(reward, idToInsert, -1, false );
-				}
-				else {
-					moveReward(reward, idToInsert, idToRemove, false);
-				}
-				break;
-			case 'removeReward':
-				let [ rewardToRemove, idToRemove1 ] = action.params;
-
-				removeReward(rewardToRemove, idToRemove1, false);
-			default:
-				break;
-		}
-
-		setActionsHistory({index: actionsHistory.index + 1, actions: actionsHistory.actions});
-	};
-
 	const getCategoryName = useCallback((categoryIndex) => {
-		return Object.keys(categoryState)[categoryIndex];
-	}, [ categoryState ]);
+		return Object.keys(stateOfCategories)[categoryIndex];
+	}, [ stateOfCategories ]);
 	
-	const moveReward = useCallback((reward, idOfInsertToCategory, idOfRemoveFromCategory, saveToHistory = true) => {
-		let insertCategory = getCategoryName(idOfInsertToCategory);
-		let removedFromName = getCategoryName(idOfRemoveFromCategory);
-		let rewardsOfCategory = categoryState[insertCategory];
+	const saveAction = useCallback((actionName, params) => {
+		let actions = historyOfActions.index - 1 !== historyOfActions.actions.length ? historyOfActions.actions.slice(0, historyOfActions.index) : historyOfActions.actions;
+			
+		setHistoryOfActions({
+			index: historyOfActions.index + 1, 
+			actions: [...actions, {
+			name: actionName,
+			params: params
+		}]});
+	}, [ historyOfActions ]);
+
+	const moveReward = useCallback((reward, addTo, removeFrom, saveToHistory = true) => {
+		let nameOfaddTo = getCategoryName(addTo);
+		let nameOfRemoveFrom = getCategoryName(removeFrom);
+		let rewardsOfCategory = stateOfCategories[nameOfaddTo];
 		let newRewardsOfCategory = rewardsOfCategory.findIndex((item) => item.id === reward.id) < 0 ? [...rewardsOfCategory, reward] : rewardsOfCategory;
 		let sortedRewards = newRewardsOfCategory.sort((a, b) => a.id - b.id)
-		let deletedRewardFromCategory = categoryState[removedFromName] || [];
+		let deletedRewardFromCategory = stateOfCategories[nameOfRemoveFrom] || [];
 
-		if(idOfRemoveFromCategory > -1) {
+		if(removeFrom > -1) {
 			deletedRewardFromCategory = deletedRewardFromCategory.filter((item) => reward.id !== item.id);
 		}
 
-		if(saveToHistory) {
+		saveToHistory && saveAction('moveReward', [reward, addTo, removeFrom])
 
-			let actions = actionsHistory.index - 1 !== actionsHistory.actions.length ? actionsHistory.actions.slice(0, actionsHistory.index) : actionsHistory.actions;
-			
-			setActionsHistory({index: actionsHistory.index + 1, actions: [...actions, {
-				name: 'moveReward',
-				params: [reward, idOfInsertToCategory, idOfRemoveFromCategory]
-			}]});
-		}
-			
-		setcategoryState({
-			...categoryState,
-			[insertCategory]: sortedRewards,
-			...(idOfRemoveFromCategory > -1 && {[removedFromName]: deletedRewardFromCategory})
+		setStateOfCategories({
+			...stateOfCategories,
+			[nameOfaddTo]: sortedRewards,
+			...(removeFrom > -1 && {[nameOfRemoveFrom]: deletedRewardFromCategory})
 		});
-	}, [ categoryState, getCategoryName, actionsHistory ]);
+	}, [ stateOfCategories, getCategoryName, saveAction ]);
 
 	const removeReward = useCallback((reward, removeFrom, saveToHistory = true) => {
-		let categoryName = getCategoryName(removeFrom);
-		let rewardsOfCategory = categoryState[categoryName];
-
+		let nameOfaddTo = getCategoryName(removeFrom);
+		let rewardsOfCategory = stateOfCategories[nameOfaddTo];
 		let newRewardsOfCategory = rewardsOfCategory.filter((item) => reward.id !== item.id);
 
-		if(saveToHistory) {
+		saveToHistory && saveAction('removeReward', [reward, removeFrom]);
 
-			let actions = actionsHistory.index - 1 !== actionsHistory.actions.length ? actionsHistory.actions.slice(0, actionsHistory.index) : actionsHistory.actions;
-			
-			setActionsHistory({index: actionsHistory.index + 1, actions: [...actions, {
-				name: 'removeReward',
-				params: [reward, removeFrom]
-			}]});
+		setStateOfCategories({
+			...stateOfCategories,
+			[nameOfaddTo]: newRewardsOfCategory
+		});
+	}, [ stateOfCategories, getCategoryName, saveAction ]);
+
+	const undo = () => {
+		if(historyOfActions.index < 1) return;	
+		
+		let action = historyOfActions.actions[historyOfActions.index - 1];
+
+		if (action.name === 'moveReward') {
+			let [reward, addTo, removeFrom] = action.params;
+
+			removeFrom === -1 ? removeReward(reward, addTo, false) : moveReward(reward, removeFrom, addTo, false);
+		}
+		else if (action.name === 'removeReward') {
+			let [reward, addTo] = action.params;
+
+			moveReward(reward, addTo, -1, false);
+		}
+		
+		setHistoryOfActions({index: historyOfActions.index - 1, actions: historyOfActions.actions});
+	};
+
+	const redo = () => {
+		if(historyOfActions.index === historyOfActions.actions.length) return;	
+
+		let action = historyOfActions.actions[historyOfActions.index];
+
+		if (action.name === 'moveReward') {
+			let [reward, addTo, removeFrom] = action.params;
+	
+			removeFrom === -1 ? moveReward(reward, addTo, -1, false) : moveReward(reward, addTo, removeFrom, false);
+		}
+		else if (action.name === 'removeReward') {
+			let [ reward, removeFrom ] = action.params;
+
+			removeReward(reward, removeFrom, false);
 		}
 
-		setcategoryState({
-			...categoryState,
-			[categoryName]: newRewardsOfCategory
-		});
-	}, [ categoryState, getCategoryName, actionsHistory ]);
+		setHistoryOfActions({index: historyOfActions.index + 1, actions: historyOfActions.actions});
+	};
 
 	const saveLocalState = useCallback(() => {
-		localStorage.setItem(localStateStorageKey, JSON.stringify(categoryState));
+		localStorage.setItem(localStorageKeyOfCategories, JSON.stringify(stateOfCategories));
 
-	}, [ categoryState ])
+	}, [ stateOfCategories ])
 
-	return <Provider value={{ categoryState, moveReward, removeReward, saveLocalState, undo, redo }} > {children} </Provider>
+	return <Provider value={{ stateOfCategories, moveReward, removeReward, saveLocalState, undo, redo }} > {children} </Provider>
 
 };
 
