@@ -21,20 +21,20 @@ const CategoryEditProvider = ({ children }) => {
 		});
 	};
 
-	const addRewardToCategory = (rewardDetails, categoryId) => {
-		
-	};
-
-	const removeRewardFromCategory = (rewardDetails, categoryId) => {
+	const addReward = (draggingDetails) => {
 
 	};
 
-	const updateTheCategoryRewards = (categoryId) => {
+	const removeReward = (draggingDetails) => {
 
 	};
 
-	return <Provider value={{ categoryEditState, initCategories, addRewardToCategory, removeRewardFromCategory, updateTheCategoryRewards }} > {children} </Provider>
+
+	return <Provider value={{ categoryEditState, initCategories, addReward, removeReward }} > {children} </Provider>
 
 };
+
+
+
 
 export { CategoryEditProvider, CategoryEditConsumer, CategoryEditContext };
