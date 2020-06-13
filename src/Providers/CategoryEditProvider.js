@@ -1,7 +1,7 @@
 import React, { useState, createContex } from 'react';
 
 const CategoryEditContext = createContex();
-const { Provider, Consumer: CategoryEditConsumer };
+const { Provider, Consumer: CategoryEditConsumer } = CategoryEditContext;
 
 const initalCategoryEditState = {
 	categories: {},
